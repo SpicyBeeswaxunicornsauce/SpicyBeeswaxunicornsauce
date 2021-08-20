@@ -14,7 +14,7 @@ class Alien(Sprite):
         self.screen = ai_game.screen
 
         # Get the alien rect and image
-        self.image = pygame.image.load('images/alien.png').convert()
+        self.image = pygame.image.load('alien.png').convert()
         self.rect = self.image.get_rect()
         self.image.set_colorkey((0, 0, 0))
 
