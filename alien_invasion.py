@@ -50,6 +50,9 @@ class AlienInvasion:
         if self.button.rect.collidepoint(mouse_pos):
             self.stats.game_active = True
 
+            # Hide the mouse cursor.
+            pygame.mouse.set_visible(False)
+
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
         if event.key == pygame.K_RIGHT:
@@ -94,9 +97,9 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
-        self._check__bullet_alien_collisions()
+        self._check_bullet_alien_collisions()
 
-    def _check__bullet_alien_collisions(self):
+    def _check_bullet_alien_collisions(self):
         """React to bullet-alien collisions."""
         # Check if the bullets have collided, and if so, delete the bullet and the alien.
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, self.powerful_bullet, True)
@@ -181,6 +184,20 @@ class AlienInvasion:
         else:
             self.stats.game_active = False
 
+            # Reset the game's stats.
+            self.stats.reset_stats()
+
+            # Get rid of all of the bullets and aliens.
+            self.aliens.empty()
+            self.bullets.empty()
+
+            # Create a new fleet of aliens and center the ship.
+            self._create_fleet()
+            self.ship.center_ship()
+
+            # Show the mouse cursor.
+            pygame.mouse.set_visible(True)
+
     def _check_aliens_bottom(self):
         """Check for aliens at the bottom of the screen."""
         screen_rect = self.screen.get_rect()
@@ -204,6 +221,9 @@ class AlienInvasion:
             self.button.draw_button()
         # Gets the most up-to-date drawn screen and makes it visible.
         pygame.display.flip()
+
+    def _show_end_screen(self):
+        pass
 
     def run_game(self):
         """This is the main loop part for the game."""
