@@ -6,7 +6,7 @@ class Settings:
         self.screen = ai_game.screen
         self.screen_width = 1200
         self.screen_height = 800
-        self.bg_image = pygame.image.load('images/starfield.png').convert()
+        self.bg_image = pygame.image.load('starfield.png').convert()
         self.bg_img_rect = self.bg_image.get_rect()
         self.caption = 'Alien Invasion'
         self.right_ship_speed = 1
