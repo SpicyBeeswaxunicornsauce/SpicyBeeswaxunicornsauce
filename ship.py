@@ -12,7 +12,7 @@ class Ship:
         self.s = ai_game.s
 
         # Load the ship image
-        self.image = pygame.image.load('images/shipy.bmp').convert()
+        self.image = pygame.image.load('shipy.bmp').convert()
         self.image.set_colorkey((96, 96, 0))
         self.rect = self.image.get_rect()
 
