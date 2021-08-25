@@ -31,11 +31,11 @@ class Ship:
         if self.moving_right:
             # Add tu da x of da ship, movig it tu da right, only if it not at da edge
             if self.moving_right and self.rect.right < self.screen_rect.right:
-                self.x += self.s.right_ship_speed
+                self.x += self.s.ship_speed
         elif self.moving_left:
             # Minus tu da x of da ship, movig it tu da left, only if it not at da edge
             if self.moving_left and self.rect.left > 0:
-                self.x -= self.s.left_ship_speed
+                self.x -= self.s.ship_speed
 
         # Update da rectangl
         self.rect.x = self.x
