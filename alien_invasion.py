@@ -48,6 +48,8 @@ class AlienInvasion:
     def _check_button_clicked(self, mouse_pos):
         """Check if the mouse is touching the button."""
         if self.button.rect.collidepoint(mouse_pos):
+            # Reset the speed settings.
+            self.s.initialize_dynamic_settings()
             self.stats.game_active = True
 
             # Hide the mouse cursor.
@@ -97,10 +99,10 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
-        self._check_bullet_alien_collisions()
+        self._check_alien_collisions()
 
-    def _check_bullet_alien_collisions(self):
-        """React to bullet-alien collisions."""
+    def _check_alien_collisions(self):
+        """React to alien collisions."""
         # Check if the bullets have collided, and if so, delete the bullet and the alien.
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, self.powerful_bullet, True)
 
@@ -108,6 +110,7 @@ class AlienInvasion:
             # Get rid of existing bullets and make a new fleet.
             self.bullets.empty()
             self._create_fleet()
+            self.s.increase_speed()
 
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
